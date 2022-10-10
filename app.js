@@ -6,8 +6,6 @@ const app = express();
 const port = process.env.PORT || 3001;
 const {dbConnection, dbDisconnect} = require('./database/config')
 
-const userRoutes = require('./routes/users')
-
 //Database
 const connectDb = async () => {
     await dbConnection();
@@ -26,10 +24,17 @@ app.use(express.static('public'))
 app.use(express.json());
 
 
+//Routes
+const userRoutes = require('./routes/users')
+const authRoutes = require('./routes/auth')
+
+
 //Paths
-const usersPath = 'users'
+const usersPath = 'users';
+const authPath = 'auth';
 
 app.use(`/api/${usersPath}`, userRoutes)
+app.use(`/api/${authPath}`, authRoutes)
 
 
 app.listen(port, () => {

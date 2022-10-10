@@ -103,6 +103,9 @@ const updateUser = async (req, res) => {
 
 const deleteUser = async (req, res) => {
     const {id} = req.params;
+    // const uid = req.uid;
+    // console.log(uid)
+    // const userAuth = req.user;
 
     try {
         //findByIdAndDelete delete forever
@@ -112,7 +115,8 @@ const deleteUser = async (req, res) => {
 
         res.status(200).json({
             msg:'User deleted successfully',
-            user
+            user,
+            // userAuth
         })
 
     } catch (e) {
